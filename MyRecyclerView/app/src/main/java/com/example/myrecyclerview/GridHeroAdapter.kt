@@ -9,6 +9,12 @@ import com.example.myrecyclerview.databinding.ItemGridHeroBinding
 
 class GridHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adapter<GridHeroAdapter.GridViewHolder>() {
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): GridViewHolder {
         val binding = ItemGridHeroBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return GridViewHolder(binding)
@@ -27,7 +33,13 @@ class GridHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adap
                     .load(hero.photo)
                     .apply(RequestOptions().override(350, 550))
                     .into(imgItemPhoto)
+
+                itemView.setOnClickListener { onItemClickCallback?.onItemClicked(hero) }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Hero)
     }
 }

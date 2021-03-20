@@ -11,6 +11,6 @@
         android:id="@+id/rv_heroes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_row_hero" />
+        tools:listitem="@layout/item_grid_hero" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

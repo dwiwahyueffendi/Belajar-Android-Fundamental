@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pengguna Github</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="search_username">Cari nama pengguna …</string>
+    <string name="github_user">PENGGUNA GITHUB</string>
+</resources>

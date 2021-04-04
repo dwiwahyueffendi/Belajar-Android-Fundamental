@@ -118,17 +118,32 @@ class DataManagerService : Service(), CoroutineScope {
             var isInsertSuccess: Boolean
 
             // Gunakan ini untuk insert query dengan menggunakan standar query
-            mahasiswaHelper.beginTransaction()
             try {
-                for (model in mahasiswaModels) {
-                    //mahasiswaHelper.insert(model)
-                    mahasiswaHelper.insertTransaction(model)
-                    progress += progressDiff
-                    publishProgress(progress.toInt())
+                mahasiswaHelper.beginTransaction()
+                loop@ for (model in mahasiswaModels) {
+                    when {
+                        job.isCancelled -> break@loop
+                        else -> {
+                            //mahasiswaHelper.insert(model)
+                            mahasiswaHelper.insertTransaction(model)
+                            progress += progressDiff
+                            publishProgress(progress.toInt())
+                        }
+                    }
                 }
-                mahasiswaHelper.setTransactionSuccess()
-                isInsertSuccess = true
-                appPreference.firstRun = false
+
+                when {
+                    job.isCancelled -> {
+                        isInsertSuccess = false
+                        appPreference.firstRun = true
+                        sendMessage(CANCEL_MESSAGE)
+                    }
+                    else -> {
+                        mahasiswaHelper.setTransactionSuccess()
+                        isInsertSuccess = true
+                        appPreference.firstRun = false
+                    }
+                }
             } catch (e: Exception) {
                 // Jika gagal maka do nothing
                 Log.e(TAG, "doInBackground: Exception")

@@ -1,6 +1,5 @@
 package com.example.submissionwahyu.api
 
-import android.os.Build
 import com.example.submissionwahyu.BuildConfig
 import com.example.submissionwahyu.data.DetailUser
 import com.example.submissionwahyu.data.User

@@ -37,12 +37,14 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
                 requestOptions.error(R.drawable.ic_error)
 
                 Glide.with((itemView))
-                    .load(user.avatar_url)
-                    .apply(RequestOptions().placeholder(R.drawable.ic_account).error(R.drawable.ic_error))
+                    .load(user.photoUser)
+                    .apply(RequestOptions()
+                        .placeholder(R.drawable.ic_account)
+                        .error(R.drawable.ic_error))
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .centerCrop()
                     .into(ivUser)
-                tvUsername.text = user.login
+                tvUsername.text = user.username
             }
 
         }

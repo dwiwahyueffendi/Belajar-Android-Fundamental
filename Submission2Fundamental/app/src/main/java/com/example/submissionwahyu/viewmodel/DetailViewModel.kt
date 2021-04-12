@@ -11,7 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailViewModel: ViewModel() {
-    val user = MutableLiveData<DetailUser>()
+    val listDetailUsers = MutableLiveData<DetailUser>()
 
     fun setUserDetail(username: String){
         RetrofitConfig.getUser()
@@ -22,7 +22,7 @@ class DetailViewModel: ViewModel() {
                     response: Response<DetailUser>
                 ) {
                     if (response.isSuccessful){
-                        user.postValue(response.body())
+                        listDetailUsers.postValue(response.body())
                     }
                 }
 
@@ -34,6 +34,6 @@ class DetailViewModel: ViewModel() {
     }
 
     fun getUserDetail(): LiveData<DetailUser> {
-        return user
+        return listDetailUsers
     }
 }

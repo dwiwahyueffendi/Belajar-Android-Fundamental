@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {
                 Intent(this@MainActivity, DetailActivity::class.java).also {
-                    it.putExtra(DetailActivity.EXTRA_USERNAME, data.login)
+                    it.putExtra(DetailActivity.EXTRA_USERNAME, data.username)
                     startActivity(it)
                 }
             }
@@ -76,10 +76,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoading(state: Boolean){
-        if(state){
-            binding.progressBar.visibility = View.VISIBLE
-        }else{
-            binding.progressBar.visibility = View.GONE
+        binding.apply {
+            if(state){
+                progressBar.visibility = View.VISIBLE
+            }else{
+                progressBar.visibility = View.GONE
+            }
         }
     }
 

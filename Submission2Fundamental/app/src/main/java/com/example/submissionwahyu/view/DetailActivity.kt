@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
@@ -43,11 +44,21 @@ class DetailActivity : AppCompatActivity() {
             if (it != null) {
                 binding.apply {
                     tvName.text = it.name
-                    tvUsername.text = it.login
+                    tvUsername.text = it.username
+                    if (it.company == null){
+                        tvCompany.visibility = View.GONE
+                    }else{
+                        tvCompany.text = it.company
+                    }
+                    if (it.location == null){
+                        tvLocation.visibility = View.GONE
+                    }else{
+                        tvLocation.text = it.location
+                    }
                     tvFollowers.text = StringBuilder("${it.followers}")
                     tvFollowing.text = StringBuilder("${it.following}")
                     Glide.with(this@DetailActivity)
-                        .load(it.avatar_url)
+                        .load(it.photoUser)
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .centerCrop()
                         .into(ivProfile)

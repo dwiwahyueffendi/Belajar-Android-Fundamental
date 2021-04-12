@@ -1,7 +1,11 @@
 package com.example.submissionwahyu.data
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
-    val login: String,
+    @SerializedName("login")
+    val username: String,
     val id: Int,
-    val avatar_url: String
+    @SerializedName("avatar_url")
+    val photoUser: String,
 )

@@ -68,10 +68,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun searchUser(){
         binding.apply {
-            val query = etSearch.text.toString()
-            if(query.isEmpty()) return
+            val search = etSearch.text.toString()
+            if(search.isEmpty()) return
             showLoading(true)
-            viewModel.setSearchUsers(query)
+            viewModel.setSearchUsers(search)
         }
     }
 

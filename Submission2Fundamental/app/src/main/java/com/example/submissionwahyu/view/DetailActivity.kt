@@ -62,7 +62,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val actionBar = supportActionBar
-        actionBar!!.setTitle("Profile")
+        actionBar!!.setTitle(R.string.profile)
         actionBar.setDisplayHomeAsUpEnabled(true)
     }
 

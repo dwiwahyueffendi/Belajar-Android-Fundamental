@@ -8,6 +8,9 @@ import android.os.Looper
 import com.example.submissionwahyu.R
 
 class SplashscreenActivity : AppCompatActivity() {
+
+    private val duration: Long = 5000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splashscreen)
@@ -17,6 +20,6 @@ class SplashscreenActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashscreenActivity, MainActivity::class.java))
                 finish()
             }
-        },5000)
+        }, duration)
     }
 }

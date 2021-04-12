@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
+import com.example.submissionwahyu.R
 import com.example.submissionwahyu.data.User
 import com.example.submissionwahyu.databinding.ListItemUserBinding
+
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
 
@@ -29,8 +32,13 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
             }
 
             binding.apply {
+                val requestOptions = RequestOptions()
+                requestOptions.placeholder(R.drawable.ic_account)
+                requestOptions.error(R.drawable.ic_error)
+
                 Glide.with((itemView))
                     .load(user.avatar_url)
+                    .apply(RequestOptions().placeholder(R.drawable.ic_account).error(R.drawable.ic_error))
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .centerCrop()
                     .into(ivUser)

@@ -1,0 +1,3 @@
+include ':pparemusnoc'
+include ':app'
+rootProject.name = "SubmissionWahyu"

@@ -31,8 +31,7 @@ class DetailUser : AppCompatActivity() {
 
         tv_name_detail.text = users?.Name
         tv_username_detail.text = "@" + users?.Username
-        tv_repo_follow.text =
-            users?.Repository + " Repository " + users?.Follower + " Follower " + users?.Following + " Following"
+        tv_repo_follow.text = users?.Repository + " Repository " + users?.Follower + " Follower " + users?.Following + " Following"
         tv_location.text = "Location: " + users?.Location
         tv_company_detail.text = "Company: " + users?.Company
 

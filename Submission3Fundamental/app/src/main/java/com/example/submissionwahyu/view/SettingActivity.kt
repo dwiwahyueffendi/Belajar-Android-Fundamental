@@ -35,7 +35,7 @@ class SettingActivity : AppCompatActivity() {
             btnSwitch.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked){
                     saveReminder(true)
-                    alarmReceiver.setRepeating(this@SettingActivity, "Repeating Alarm","01:16", "Github Reminder")
+                    alarmReceiver.setRepeating(this@SettingActivity, "Repeating Alarm","09:00", "Github Reminder")
                 }else{
                     saveReminder(false)
                     alarmReceiver.cancelAlarm(this@SettingActivity)

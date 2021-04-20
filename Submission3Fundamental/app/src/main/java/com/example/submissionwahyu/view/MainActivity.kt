@@ -72,8 +72,9 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             val search = etSearch.text.toString()
             if(search.isEmpty()) return
+
             showLoading(true)
-            viewModel.setSearchUsers(search)
+            viewModel.setSearchUsers(search, this@MainActivity)
         }
     }
 
@@ -81,7 +82,9 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             if(state){
                 progressBar.visibility = View.VISIBLE
+                frameLayout1.visibility = View.GONE
             }else{
+                progressBar.visibility = View.GONE
                 progressBar.visibility = View.GONE
             }
         }
@@ -89,6 +92,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+
+        /*menu.findItem(R.id.et_search).setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                binding.apply {
+                    rvUser.visibility = View.GONE
+                    ivFollow.visibility = View.VISIBLE
+                }
+                return true
+            }
+        })*/
+
         return super.onCreateOptionsMenu(menu)
     }
 

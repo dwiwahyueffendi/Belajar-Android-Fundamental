@@ -9,7 +9,7 @@ import com.example.submissionwahyu.R
 
 class SplashscreenActivity : AppCompatActivity() {
 
-    private val duration: Long = 5000
+    private val duration: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

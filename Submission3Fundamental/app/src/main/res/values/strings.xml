@@ -19,4 +19,5 @@
     <string name="sub_text">Submission Android Fundamental 3 Dicoding</string>
     <string name="alarm_on">Alarm Manager Set Up</string>
     <string name="alarm_off">Alarm Manager anceled</string>
+    <string name="connection_failed">Connection Failed.\nPlease check and try again.</string>
 </resources>

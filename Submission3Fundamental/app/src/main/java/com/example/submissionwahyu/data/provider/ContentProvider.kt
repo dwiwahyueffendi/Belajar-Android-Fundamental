@@ -11,29 +11,33 @@ import com.example.submissionwahyu.data.database.UserDatabase
 class ContentProvider : ContentProvider() {
 
     companion object{
-        const val AUTH = "com.example.submissionwahyu"
-        const val TABLE_NAME = "favorite_database"
+        private const val AUTH = "com.example.submissionwahyu"
+        private const val TABLE_NAME = "favorite_database"
+       // private const val SCHEMA = "schema"
+
         const val ID_FAVORITE_USER = 1
-        val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+        //const val FAVORITE_USER = 2
+        val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
         init {
-            uriMatcher.addURI(AUTH, TABLE_NAME, ID_FAVORITE_USER)
+            sUriMatcher.addURI(AUTH, TABLE_NAME, ID_FAVORITE_USER)
+            //sUriMatcher.addURI(AUTH, "$TABLE_NAME/#", FAVORITE_USER)
         }
+
+        /*private val contentUri: Uri = Uri.Builder().scheme(SCHEMA)
+            .authority(AUTH)
+            .appendPath(TABLE_NAME)
+            .build()*/
     }
 
     private lateinit var userQuery: QueryDatabase
+    //private lateinit var cursor: Cursor
 
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-        return 0
-    }
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int = -1
 
-    override fun getType(uri: Uri): String? {
-        return null
-    }
+    override fun getType(uri: Uri): String? = null
 
-    override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        return null
-    }
+    override fun insert(uri: Uri, values: ContentValues?): Uri? = null
 
     override fun onCreate(): Boolean {
         userQuery = context.let {
@@ -46,25 +50,14 @@ class ContentProvider : ContentProvider() {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
-        var cursor: Cursor?
-        when(uriMatcher.match(uri)){
-            ID_FAVORITE_USER -> {
-                cursor = userQuery.getConsumerUser()
-
-                if (context != null){
-                    cursor.setNotificationUri(context?.contentResolver, uri)
-                }
-            }else ->{
-                cursor = null
-            }
+        return when(sUriMatcher.match(uri)){
+            ID_FAVORITE_USER -> userQuery.getConsumerUser()
+            else -> null
         }
-        return cursor
     }
 
     override fun update(
         uri: Uri, values: ContentValues?, selection: String?,
         selectionArgs: Array<String>?
-    ): Int {
-        return 0
-    }
+    ): Int = -1
 }

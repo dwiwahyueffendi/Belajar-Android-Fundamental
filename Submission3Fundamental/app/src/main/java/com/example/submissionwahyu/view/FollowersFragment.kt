@@ -18,6 +18,11 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
     private lateinit var adapter: UserAdapter
     private lateinit var username: String
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

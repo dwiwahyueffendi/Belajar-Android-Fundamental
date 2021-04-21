@@ -20,5 +20,7 @@
     <string name="sub_text">Submission Android Fundamental 3 Dicoding</string>
     <string name="alarm_on">Alarm Manager Dinyalakan</string>
     <string name="alarm_off">Alarm Manager Dibatalkan</string>
-    <string name="connection_failed">Koneksi gagal.\nSilahkan cek dan coba lagi.</string>
+    <string name="connection_failed">Koneksi gagal. \n Silahkan cek dan coba lagi.</string>
+    <string name="home_placeholder">Gunakan Ikon Pencarian Untuk Menemukan Pengguna</string>
+    <string name="favorite_placeholder">Oops.. Anda Belum Menambahkan Daftar Favorit Pengguna</string>
 </resources>

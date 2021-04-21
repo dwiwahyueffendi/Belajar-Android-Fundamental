@@ -19,5 +19,7 @@
     <string name="sub_text">Submission Android Fundamental 3 Dicoding</string>
     <string name="alarm_on">Alarm Manager Set Up</string>
     <string name="alarm_off">Alarm Manager anceled</string>
-    <string name="connection_failed">Connection Failed.\nPlease check and try again.</string>
+    <string name="connection_failed">Connection Failed. \n Please check and try again.</string>
+    <string name="home_placeholder">Use The Search Icon To Find a Users</string>
+    <string name="favorite_placeholder">Oops.. You Havent Added \n a List of Favorite Users</string>
 </resources>

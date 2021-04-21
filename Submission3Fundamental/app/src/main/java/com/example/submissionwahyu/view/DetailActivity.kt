@@ -3,7 +3,6 @@ package com.example.submissionwahyu.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -35,6 +34,11 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setDetailUI()
+        setDetailActionBar()
+    }
+
+    private fun setDetailUI() {
         val username = intent.getStringExtra(EXTRA_USERNAME)
         val id = intent.getIntExtra(EXTRA_ID, 0)
         val photoUser = intent.getStringExtra(EXTRA_PHOTO_USER)
@@ -99,7 +103,9 @@ class DetailActivity : AppCompatActivity() {
             viewPager.adapter = sectionPagerAdapter
             tabs.setupWithViewPager(viewPager)
         }
+    }
 
+    private fun setDetailActionBar() {
         val actionBar = supportActionBar
         actionBar!!.setTitle(R.string.profile)
         actionBar.setDisplayHomeAsUpEnabled(true)

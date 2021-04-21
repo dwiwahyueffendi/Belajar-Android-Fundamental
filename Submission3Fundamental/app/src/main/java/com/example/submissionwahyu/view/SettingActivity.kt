@@ -21,6 +21,11 @@ class SettingActivity : AppCompatActivity() {
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSettingUI()
+        setSettingActionBar()
+    }
+
+    private fun setSettingUI() {
         binding.btnChangeLanguage.setOnClickListener {
             val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
             startActivity(mIntent)
@@ -42,7 +47,9 @@ class SettingActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    private fun setSettingActionBar() {
         val actionBar = supportActionBar
         actionBar!!.setTitle(R.string.setting)
         actionBar.setDisplayHomeAsUpEnabled(true)

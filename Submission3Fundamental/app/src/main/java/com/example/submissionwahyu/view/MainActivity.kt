@@ -26,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setMainUI()
+    }
+
+    private fun setMainUI() {
+
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -63,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getSearchUsers().observe(this, {
             if (it!=null){
                 adapter.setList(it)
-                showLoading(false)
+                loadingState(false)
             }
         })
     }
@@ -73,40 +78,27 @@ class MainActivity : AppCompatActivity() {
             val search = etSearch.text.toString()
             if(search.isEmpty()) return
 
-            showLoading(true)
+            loadingState(true)
             viewModel.setSearchUsers(search, this@MainActivity)
         }
     }
 
-    private fun showLoading(state: Boolean){
+    private fun loadingState(state: Boolean){
         binding.apply {
             if(state){
                 progressBar.visibility = View.VISIBLE
-                frameLayout1.visibility = View.GONE
+                ivPlaceholder.visibility = View.GONE
+                tvPlaceholder.visibility = View.GONE
             }else{
                 progressBar.visibility = View.GONE
-                progressBar.visibility = View.GONE
+                ivPlaceholder.visibility = View.GONE
+                tvPlaceholder.visibility = View.GONE
             }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-
-        /*menu.findItem(R.id.et_search).setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
-            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                binding.apply {
-                    rvUser.visibility = View.GONE
-                    ivFollow.visibility = View.VISIBLE
-                }
-                return true
-            }
-        })*/
-
         return super.onCreateOptionsMenu(menu)
     }
 

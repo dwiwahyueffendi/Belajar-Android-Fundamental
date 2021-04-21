@@ -25,6 +25,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
         list.addAll(users)
         notifyDataSetChanged()
     }
+
     inner class UserViewHolder(val binding: ListItemUserBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(user: User){
             binding.root.setOnClickListener{

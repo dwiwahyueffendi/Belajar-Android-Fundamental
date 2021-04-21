@@ -21,16 +21,12 @@ class MainViewModel : ViewModel() {
             .getSearchUsers(search)
             .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(call: Call<UserResponse>, userResponse: Response<UserResponse>) {
-                    /*if (userResponse.isSuccessful) {
-                        listUsers.postValue(userResponse.body()?.items)
-                    }*/
                     val body = userResponse.body()?.items
                     listUsers.postValue(body)
                 }
 
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    //t.message?.let { Log.d("Failure", it) }
-                    Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_SHORT).show()
                 }
 
             })

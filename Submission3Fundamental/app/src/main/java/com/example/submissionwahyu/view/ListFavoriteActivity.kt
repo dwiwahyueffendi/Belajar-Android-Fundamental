@@ -3,8 +3,11 @@ package com.example.submissionwahyu.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.submissionwahyu.R
 import com.example.submissionwahyu.adapter.UserAdapter
 import com.example.submissionwahyu.data.database.FavoriteDatabase
@@ -23,6 +26,11 @@ class ListFavoriteActivity : AppCompatActivity() {
         binding = ActivityListFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setFavoriteUI()
+        setFavoriteActionBar()
+    }
+
+    private fun setFavoriteUI() {
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -40,25 +48,55 @@ class ListFavoriteActivity : AppCompatActivity() {
         })
 
         binding.apply {
+            Glide.with(this@ListFavoriteActivity)
+                .load(
+                    ContextCompat.getDrawable(
+                        this@ListFavoriteActivity,
+                        R.drawable.empty
+                    )
+                )
+                .into(ivPlaceholder)
+
+
             rvUser.layoutManager = LinearLayoutManager(this@ListFavoriteActivity)
             rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
         }
 
-        viewModel.getFavoriteUser()?.observe(this, {
-            if (it!=null){
-                val listFavoriteUser = mapListUser(it)
+        viewModel.getFavoriteUser()?.observe(this){ userFavorite ->
+            if (userFavorite != null && userFavorite.isNotEmpty()){
+                val listFavoriteUser = mapListUser(userFavorite)
                 adapter.setList(listFavoriteUser)
+                loadingState(true)
+            } else{
+                loadingState(false)
             }
-        })
+        }
+    }
 
+    private fun setFavoriteActionBar() {
         val actionBar = supportActionBar
         actionBar!!.setTitle(R.string.list_favorite)
         actionBar.setDisplayHomeAsUpEnabled(true)
     }
 
+    private fun loadingState(state: Boolean) {
+        binding.apply {
+            if(state){
+                rvUser.visibility = View.VISIBLE
+                ivPlaceholder.visibility = View.GONE
+                tvPlaceholder.visibility = View.GONE
+            }else{
+                rvUser.visibility = View.GONE
+                ivPlaceholder.visibility = View.VISIBLE
+                tvPlaceholder.visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun mapListUser(users: List<FavoriteDatabase>): ArrayList<User> {
         val listUsers = ArrayList<User>()
+
         for(user in users){
             val userMap = User(
                 user.username,

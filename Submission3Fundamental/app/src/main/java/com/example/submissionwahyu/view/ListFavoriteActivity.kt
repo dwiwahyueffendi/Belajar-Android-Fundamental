@@ -55,8 +55,7 @@ class ListFavoriteActivity : AppCompatActivity() {
                         R.drawable.empty
                     )
                 )
-                .into(ivPlaceholder)
-
+                .into(ivPlaceholderFavorite)
 
             rvUser.layoutManager = LinearLayoutManager(this@ListFavoriteActivity)
             rvUser.setHasFixedSize(true)
@@ -84,12 +83,12 @@ class ListFavoriteActivity : AppCompatActivity() {
         binding.apply {
             if(state){
                 rvUser.visibility = View.VISIBLE
-                ivPlaceholder.visibility = View.GONE
-                tvPlaceholder.visibility = View.GONE
+                ivPlaceholderFavorite.visibility = View.GONE
+                tvPlaceholderFavorite.visibility = View.GONE
             }else{
                 rvUser.visibility = View.GONE
-                ivPlaceholder.visibility = View.VISIBLE
-                tvPlaceholder.visibility = View.VISIBLE
+                ivPlaceholderFavorite.visibility = View.VISIBLE
+                tvPlaceholderFavorite.visibility = View.VISIBLE
             }
         }
     }

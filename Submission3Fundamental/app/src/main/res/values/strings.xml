@@ -22,4 +22,5 @@
     <string name="connection_failed">Connection Failed. \n Please check and try again.</string>
     <string name="home_placeholder">Use The Search Icon To Find a Users</string>
     <string name="favorite_placeholder">Oops.. You Havent Added \n a List of Favorite Users</string>
+    <string name="follow_placeholder">Not Follow Anyone</string>
 </resources>

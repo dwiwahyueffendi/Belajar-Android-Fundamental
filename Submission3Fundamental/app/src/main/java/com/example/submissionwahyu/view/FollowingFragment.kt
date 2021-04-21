@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submissionwahyu.R
 import com.example.submissionwahyu.adapter.UserAdapter
@@ -26,6 +25,10 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         username = argmns?.getString(DetailActivity.EXTRA_USERNAME).toString()
         _binding = FragmentFollowBinding.bind(view)
 
+        setFollowingUI()
+    }
+
+    private fun setFollowingUI() {
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -35,17 +38,20 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
             rvUser.adapter = adapter
         }
 
-        showLoading(true)
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            FollowingViewModel::class.java
-        )
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowingViewModel::class.java)
+
         viewModel.setListFollowing(username)
-        viewModel.getListFollowing().observe(viewLifecycleOwner, {
-            if (it != null) {
-                adapter.setList(it)
-                showLoading(false)
+
+        viewModel.getListFollowing().observe(viewLifecycleOwner){ userFollowing ->
+            if (userFollowing != null && userFollowing.isNotEmpty()){
+                adapter.setList(userFollowing)
+                loadingState(true)
+            } else{
+                loadingState(false)
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
@@ -53,11 +59,19 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         _binding = null
     }
 
-    private fun showLoading(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
+    private fun loadingState(state: Boolean) {
+        binding.apply {
+            if (state) {
+                rvUser.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+                ivPlaceholderFollow.visibility = View.GONE
+                tvPlaceholderFollow.visibility = View.GONE
+            } else {
+                rvUser.visibility = View.GONE
+                progressBar.visibility = View.GONE
+                ivPlaceholderFollow.visibility = View.VISIBLE
+                tvPlaceholderFollow.visibility = View.VISIBLE
+            }
         }
     }
 }

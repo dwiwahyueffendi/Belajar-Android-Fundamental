@@ -7,19 +7,19 @@
     tools:context=".view.ListFavoriteActivity">
 
     <ImageView
-        android:id="@+id/iv_placeholder"
+        android:id="@+id/iv_placeholder_favorite"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="250dp"
-        android:src="@drawable/listfavorite"
+        android:src="@drawable/emptyfavorite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,MissingConstraints" />
 
     <TextView
-        android:id="@+id/tv_placeholder"
+        android:id="@+id/tv_placeholder_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -28,7 +28,7 @@
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/iv_placeholder"
+        app:layout_constraintTop_toBottomOf="@+id/iv_placeholder_favorite"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView

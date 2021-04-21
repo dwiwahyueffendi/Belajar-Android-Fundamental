@@ -23,4 +23,5 @@
     <string name="connection_failed">Koneksi gagal. \n Silahkan cek dan coba lagi.</string>
     <string name="home_placeholder">Gunakan Ikon Pencarian Untuk Menemukan Pengguna</string>
     <string name="favorite_placeholder">Oops.. Anda Belum Menambahkan Daftar Favorit Pengguna</string>
+    <string name="follow_placeholder">Tidak Mengikuti Siapapun</string>
 </resources>

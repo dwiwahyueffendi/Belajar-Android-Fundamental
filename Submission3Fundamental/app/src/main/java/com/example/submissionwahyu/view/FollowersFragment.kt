@@ -25,6 +25,10 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         username = argmns?.getString(DetailActivity.EXTRA_USERNAME).toString()
         _binding = FragmentFollowBinding.bind(view)
 
+        setFollowersUI()
+    }
+
+    private fun setFollowersUI() {
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -34,18 +38,26 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
             rvUser.adapter = adapter
         }
 
-        showLoading(true)
-        viewModel = ViewModelProvider(
-            this,
+        viewModel = ViewModelProvider(this,
             ViewModelProvider.NewInstanceFactory()
         ).get(FollowersViewModel::class.java)
+
         viewModel.setListFollowers(username)
-        viewModel.getListFollowers().observe(viewLifecycleOwner, {
+
+    /*viewModel.getListFollowers().observe(viewLifecycleOwner, {
             if (it != null) {
                 adapter.setList(it)
-                showLoading(false)
+                loadingState(false)
             }
-        })
+        })*/
+        viewModel.getListFollowers().observe(viewLifecycleOwner){ userFollowers ->
+            if (userFollowers != null && userFollowers.isNotEmpty()){
+                adapter.setList(userFollowers)
+                loadingState(true)
+            } else{
+                loadingState(false)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -53,11 +65,19 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         _binding = null
     }
 
-    private fun showLoading(state: Boolean) {
-        if (state) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
+    private fun loadingState(state: Boolean) {
+        binding.apply {
+            if (state) {
+                rvUser.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+                ivPlaceholderFollow.visibility = View.GONE
+                tvPlaceholderFollow.visibility = View.GONE
+            } else {
+                rvUser.visibility = View.GONE
+                progressBar.visibility = View.GONE
+                ivPlaceholderFollow.visibility = View.VISIBLE
+                tvPlaceholderFollow.visibility = View.VISIBLE
+            }
         }
     }
 }

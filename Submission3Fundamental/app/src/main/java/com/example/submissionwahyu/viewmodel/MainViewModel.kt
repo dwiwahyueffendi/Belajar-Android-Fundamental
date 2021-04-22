@@ -28,7 +28,6 @@ class MainViewModel : ViewModel() {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_SHORT).show()
                 }
-
             })
     }
 

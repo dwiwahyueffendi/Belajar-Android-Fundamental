@@ -62,10 +62,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "de.hdodenhof:circleimageview:$circleImageVersion"
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'
 
     // LiveData & ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "com.google.dagger:hilt-android:2.31-alpha"
     kapt "com.google.dagger:hilt-compiler:2.31-alpha"
@@ -90,6 +93,7 @@ dependencies {
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     //SharedPreferences

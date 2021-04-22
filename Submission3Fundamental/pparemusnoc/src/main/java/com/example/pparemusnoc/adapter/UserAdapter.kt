@@ -16,9 +16,6 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
     private var list = ArrayList<User>()
 
     private var onItemClickCallback: OnItemClickCallback? = null
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
-        this.onItemClickCallback = onItemClickCallback
-    }
 
     fun setList(users: ArrayList<User>){
         list.clear()

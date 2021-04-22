@@ -10,26 +10,22 @@ import com.example.submissionwahyu.R
 import com.example.submissionwahyu.view.FollowersFragment
 import com.example.submissionwahyu.view.FollowingFragment
 
-class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager, data: Bundle) :
-    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+/*class SectionPagerAdapter(
+    private val mContext: Context,
+    fm: FragmentManager, data: Bundle
+) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private var fragmentBundle: Bundle = data
 
-    /*init {
-        fragmentBundle = data
-    }*/
-
     companion object {
         @StringRes
-        private val TAB_TITLES = intArrayOf(
+        private val TAB_TITLES = listOf(
             R.string.followers,
             R.string.following
         )
     }
 
-    override fun getCount(): Int {
-        return 2
-    }
+    override fun getCount(): Int = TAB_TITLES.size
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
@@ -44,4 +40,4 @@ class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager, da
     override fun getPageTitle(position: Int): CharSequence {
         return mContext.resources.getString(TAB_TITLES[position])
     }
-}
+}*/

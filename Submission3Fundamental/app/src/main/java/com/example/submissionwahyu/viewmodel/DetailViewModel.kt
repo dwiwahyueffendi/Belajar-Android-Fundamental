@@ -22,17 +22,6 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     val listDetailUsers = MutableLiveData<DetailUser>()
     private val userQuery: QueryDatabase? = UserDatabase.getUserDatabase(application)?.queryDatabase()
 
-
-    //private var userQuery: QueryDatabase = UserDatabase.getUserDatabase(application)?.queryDatabase()
-
-    /*private var userQuery: QueryDatabase?
-    private var userDatabase: UserDatabase?
-
-    init {
-        userDatabase = UserDatabase.getUserDatabase(application)
-        userQuery = userDatabase?.queryDatabase()
-    }*/
-
     fun setUserDetail(username: String, context: Context) {
         RetrofitConfig.getUser()
             .getUserDetail(username)
@@ -49,7 +38,6 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
                 override fun onFailure(call: Call<DetailUser>, t: Throwable) {
                     Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_SHORT).show()
                 }
-
             })
     }
 
@@ -58,23 +46,6 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     suspend fun checkFavoriteUser(id: Int) = userQuery?.checkFavoriteUser(id)
-
-    /*fun addFavoriteUser(username: String, id: Int, photoUser: String){
-        CoroutineScope(Dispatchers.IO).launch {
-            var favorite = FavoriteDatabase(username, id, photoUser)
-            userQuery?.addFavoriteUser(favorite)
-        }
-    }
-
-    fun deleteFavoriteUser(id: Int){
-        CoroutineScope(Dispatchers.IO).launch {
-            userQuery?.deleteFavoriteUser(id)
-        }
-    }*/
-
-    /*fun checkFavoriteUser(id: Int) = viewModelScope.launch {
-        userQuery?.checkFavoriteUser(id)
-    }*/
 
     fun addFavoriteUser(username: String, id: Int, photoUser: String) = viewModelScope.launch {
         var favorite = FavoriteDatabase(username, id, photoUser)

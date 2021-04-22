@@ -15,7 +15,6 @@ class SettingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingBinding
     private lateinit var alarmReceiver: AlarmReceiver
-    //private lateinit var reminder: DailyReminder
     private lateinit var mSharedPreferences: SharedPreferences
 
     companion object {
@@ -28,7 +27,6 @@ class SettingActivity : AppCompatActivity() {
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //setSettingUI()
         setChangeLanguage()
         setReminder()
         setSettingActionBar()
@@ -60,7 +58,6 @@ class SettingActivity : AppCompatActivity() {
                 saveChange(isChecked)
             }
         }
-
     }
 
     private fun setChecked() {
@@ -75,43 +72,11 @@ class SettingActivity : AppCompatActivity() {
         editor.apply()
     }
 
-
-    /*private fun setSettingUI() {
-        binding.btnChangeLanguage.setOnClickListener {
-            val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(mIntent)
-        }
-
-        binding.apply {
-            val reminderPref = ReminderPreference(this@SettingActivity)
-            btnSwitch.isChecked = reminderPref.getDailyReminder().isReminded
-
-            alarmReceiver = AlarmReceiver()
-
-            btnSwitch.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked){
-                    saveReminder(true)
-                    alarmReceiver.setRepeating(this@SettingActivity, "Repeating Alarm","09:00", "Github Reminder")
-                }else{
-                    saveReminder(false)
-                    alarmReceiver.cancelAlarm(this@SettingActivity)
-                }
-            }
-        }
-    }*/
-
     private fun setSettingActionBar() {
         val actionBar = supportActionBar
         actionBar!!.setTitle(R.string.setting)
         actionBar.setDisplayHomeAsUpEnabled(true)
     }
-
-    /*private fun saveReminder(saveReminderState: Boolean) {
-        val reminderPref = ReminderPreference(this)
-        reminder = DailyReminder()
-        reminder.isReminded = saveReminderState
-        reminderPref.setDailyReminder(reminder)
-    }*/
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

@@ -52,7 +52,7 @@ class ListFavoriteActivity : AppCompatActivity() {
                 .load(
                     ContextCompat.getDrawable(
                         this@ListFavoriteActivity,
-                        R.drawable.empty
+                        R.drawable.emptyfavorite
                     )
                 )
                 .into(ivPlaceholderFavorite)
@@ -61,16 +61,6 @@ class ListFavoriteActivity : AppCompatActivity() {
             rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
         }
-
-        /*favoriteViewModel.getFavoriteUser()?.observe(this){ userFavorite ->
-            if (userFavorite != null && userFavorite.isNotEmpty()){
-                val listFavoriteUser = mapListUser(userFavorite)
-                adapter.setList(listFavoriteUser)
-                loadingState(true)
-            } else{
-                loadingState(false)
-            }
-        }*/
 
         favoriteViewModel.viewFavorite?.observe(this){ userFavorite ->
             if (userFavorite != null && userFavorite.isNotEmpty()){

@@ -22,16 +22,12 @@ class FollowersViewModel: ViewModel() {
                     call: Call<ArrayList<User>>,
                     response: Response<ArrayList<User>>
                 ) {
-                    /*if (response.isSuccessful){
-                        listUserFollowers.postValue(response.body())
-                    }*/
                     val body = response.body()
                     listUserFollowers.postValue(body)
                 }
 
                 override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
                     t.message?.let { Log.d(R.string.connection_failed.toString(), it) }
-                    //Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_SHORT).show()
                 }
 
             })

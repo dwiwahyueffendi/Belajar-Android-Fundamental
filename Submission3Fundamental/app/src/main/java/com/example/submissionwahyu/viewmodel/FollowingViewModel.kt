@@ -30,7 +30,6 @@ class FollowingViewModel: ViewModel() {
                 }
 
                 override fun onFailure(call: Call<ArrayList<User>>, t: Throwable) {
-                    //Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_SHORT).show()
                     t.message?.let { Log.d(R.string.connection_failed.toString(), it) }
                 }
             })

@@ -14,15 +14,14 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
 
     private var _binding: FragmentFollowBinding? = null
     private val binding get() = _binding!!
-    private lateinit var followersViewModel: FollowersViewModel
-    private lateinit var adapter: UserAdapter
     private lateinit var username: String
+    private lateinit var adapter: UserAdapter
+    private lateinit var followersViewModel: FollowersViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val argmns = arguments
-        username = argmns?.getString(DetailActivity.EXTRA_USERNAME).toString()
+        username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
         _binding = FragmentFollowBinding.bind(view)
 
         setFollowersUI()
@@ -45,12 +44,6 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
 
         followersViewModel.setListFollowers(username)
 
-        /*followersViewModel.getListFollowers().observe(viewLifecycleOwner, {
-                if (it != null) {
-                    adapter.setList(it)
-                    loadingState(false)
-                }
-            })*/
         followersViewModel.getListFollowers().observe(viewLifecycleOwner) { userFollowers ->
             if (userFollowers != null && userFollowers.isNotEmpty()) {
                 adapter.setList(userFollowers)

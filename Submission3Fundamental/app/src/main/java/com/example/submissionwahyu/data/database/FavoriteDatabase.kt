@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
 @Entity(tableName = "favorite_database")
 @Parcelize
@@ -25,11 +26,4 @@ data class FavoriteDatabase(
     @ColumnInfo(name = "photoUser")
     @field:Json(name = "photoUser")
     val photoUser: String
-
-    /*@SerializedName("login")
-    val username: String,
-    @PrimaryKey
-    val id: Int,
-    @SerializedName("avatar_url")
-    val photoUser: String*/
 ): Parcelable

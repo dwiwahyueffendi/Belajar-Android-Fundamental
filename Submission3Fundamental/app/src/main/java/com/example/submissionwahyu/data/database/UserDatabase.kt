@@ -27,6 +27,4 @@ abstract class UserDatabase: RoomDatabase() {
     }
 
     abstract fun queryDatabase(): QueryDatabase
-
-
 }

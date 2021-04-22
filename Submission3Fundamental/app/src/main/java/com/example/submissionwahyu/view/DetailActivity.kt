@@ -6,15 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.submissionwahyu.R
-import com.example.submissionwahyu.adapter.SectionPagerAdapter
 import com.example.submissionwahyu.databinding.ActivityDetailBinding
 import com.example.submissionwahyu.viewmodel.DetailViewModel
 import kotlinx.coroutines.*
+import com.shashank.sony.fancytoastlib.FancyToast
 
 class DetailActivity : AppCompatActivity() {
 
@@ -28,6 +31,12 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_USERNAME = "extra_username"
         const val EXTRA_ID = "extra_id"
         const val EXTRA_PHOTO_USER = "extra_photo_user"
+
+        @StringRes
+        private val TAB_TITLES = listOf(
+            R.string.followers,
+            R.string.following
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,13 +97,9 @@ class DetailActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main){
                     if (count != null){
                         if (0 < count){
-                            //btnFavorite.isChecked = false
-                            //state = false
                             btnFavorite.isChecked = true
                             state = true
-                        } else{
-                            //btnFavorite.isChecked = true
-                            //state = true
+                        } else {
                             btnFavorite.isChecked = false
                             state = false
                         }
@@ -103,16 +108,20 @@ class DetailActivity : AppCompatActivity() {
             }
 
             btnFavorite.setOnClickListener{
-                //state = !state
                 if (!state){
                     username?.let { it1 ->
                         photoUser?.let { it2 ->
                             detailViewModel.addFavoriteUser(it1, id, it2)
-                        } }
-                    Toast.makeText(this@DetailActivity, R.string.toggle_favorite, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    FancyToast.makeText(
+                        this@DetailActivity, resources.getString(R.string.toggle_favorite),
+                        FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show()
                 } else{
                     detailViewModel.deleteFavoriteUser(id)
-                    Toast.makeText(this@DetailActivity, R.string.toggle_unfavorite, Toast.LENGTH_SHORT).show()
+                    FancyToast.makeText(
+                        this@DetailActivity, resources.getString(R.string.toggle_unfavorite),
+                        FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show()
                 }
                 btnFavorite.isChecked = !state
             }
@@ -131,13 +140,35 @@ class DetailActivity : AppCompatActivity() {
                 intent.data = Uri.parse(url)
                 startActivity(intent)
             }
-
         }
 
-        val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager, mBundle)
+        val sectionPager = SectionPagerAdapter(supportFragmentManager, mBundle)
         binding.apply {
-            viewPager.adapter = sectionPagerAdapter
+            viewPager.adapter = sectionPager
             tabs.setupWithViewPager(viewPager)
+        }
+    }
+
+    inner class SectionPagerAdapter(
+        fm: FragmentManager,
+        data: Bundle
+    ): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        private var fragmentBundle: Bundle = data
+
+        override fun getCount(): Int = TAB_TITLES.size
+
+        override fun getItem(position: Int): Fragment {
+            var fragment: Fragment? = null
+            when (position) {
+                0 -> fragment = FollowersFragment()
+                1 -> fragment = FollowingFragment()
+            }
+            fragment?.arguments = this.fragmentBundle
+            return fragment as Fragment
+        }
+
+        override fun getPageTitle(position: Int): CharSequence {
+            return resources.getString(TAB_TITLES[position])
         }
     }
 

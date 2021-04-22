@@ -5,7 +5,7 @@ import android.provider.BaseColumns
 
 object DatabaseProvider {
 
-    const val SCHEMA = "schema"
+    const val SCHEMA = "content"
     const val AUTH = "com.example.submissionwahyu"
 
     internal class FavoriteColumns: BaseColumns{

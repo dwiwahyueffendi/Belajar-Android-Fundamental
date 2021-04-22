@@ -18,7 +18,7 @@ import com.example.submissionwahyu.viewmodel.MainViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var adapter: UserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
         binding.apply {
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.getSearchUsers().observe(this, {
+        mainViewModel.getSearchUsers().observe(this, {
             if (it!=null){
                 adapter.setList(it)
                 loadingState(false)
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             if(search.isEmpty()) return
 
             loadingState(true)
-            viewModel.setSearchUsers(search, this@MainActivity)
+            mainViewModel.setSearchUsers(search, this@MainActivity)
         }
     }
 

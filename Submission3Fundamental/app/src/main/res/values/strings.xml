@@ -2,7 +2,11 @@
     <string name="app_name">Github User</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
-    <string name="search_username">Search Username …</string>
+    <string name="search_username">\t\tSearch Username …</string>
+    <string name="connection_failed">Connection Failed. \n Please check and try again.</string>
+    <string name="home_placeholder">Use The Search Icon To Find a Users</string>
+    <string name="favorite_placeholder">Oops.. You Havent Added \n a List of Favorite Users</string>
+    <string name="follow_placeholder">Not Follow Anyone</string>
     <string name="github_user">GITHUB USER</string>
     <string name="profile">Profile User</string>
     <string name="company">Unemployed</string>
@@ -15,12 +19,10 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
     <string name="setting">Setting</string>
-    <string name="content_text">Alarm Notifications</string>
-    <string name="sub_text">Submission Android Fundamental 3 Dicoding</string>
+    <string name="content_title">Alarm Notifications</string>
+    <string name="content_text">Submission Android Fundamental 3 Dicoding</string>
+    <string name="sub_text">Notification Reminder at 9 AM</string>
     <string name="alarm_on">Alarm Manager Set Up</string>
     <string name="alarm_off">Alarm Manager anceled</string>
-    <string name="connection_failed">Connection Failed. \n Please check and try again.</string>
-    <string name="home_placeholder">Use The Search Icon To Find a Users</string>
-    <string name="favorite_placeholder">Oops.. You Havent Added \n a List of Favorite Users</string>
-    <string name="follow_placeholder">Not Follow Anyone</string>
+
 </resources>

@@ -14,7 +14,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
 
     private var _binding: FragmentFollowBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: FollowersViewModel
+    private lateinit var followersViewModel: FollowersViewModel
     private lateinit var adapter: UserAdapter
     private lateinit var username: String
 
@@ -33,36 +33,32 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         adapter.notifyDataSetChanged()
 
         binding.apply {
-            rvUser.setHasFixedSize(true)
             rvUser.layoutManager = LinearLayoutManager(activity)
+            rvUser.setHasFixedSize(true)
             rvUser.adapter = adapter
         }
 
-        viewModel = ViewModelProvider(this,
+        followersViewModel = ViewModelProvider(
+            this,
             ViewModelProvider.NewInstanceFactory()
         ).get(FollowersViewModel::class.java)
 
-        viewModel.setListFollowers(username)
+        followersViewModel.setListFollowers(username)
 
-    /*viewModel.getListFollowers().observe(viewLifecycleOwner, {
-            if (it != null) {
-                adapter.setList(it)
-                loadingState(false)
-            }
-        })*/
-        viewModel.getListFollowers().observe(viewLifecycleOwner){ userFollowers ->
-            if (userFollowers != null && userFollowers.isNotEmpty()){
+        /*followersViewModel.getListFollowers().observe(viewLifecycleOwner, {
+                if (it != null) {
+                    adapter.setList(it)
+                    loadingState(false)
+                }
+            })*/
+        followersViewModel.getListFollowers().observe(viewLifecycleOwner) { userFollowers ->
+            if (userFollowers != null && userFollowers.isNotEmpty()) {
                 adapter.setList(userFollowers)
                 loadingState(true)
-            } else{
+            } else {
                 loadingState(false)
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun loadingState(state: Boolean) {
@@ -79,5 +75,10 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
                 tvPlaceholderFollow.visibility = View.VISIBLE
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

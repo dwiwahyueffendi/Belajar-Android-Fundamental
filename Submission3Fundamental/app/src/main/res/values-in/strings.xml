@@ -3,7 +3,10 @@
     <string name="app_name">Pengguna Github</string>
     <string name="followers">Pengikut</string>
     <string name="following">Mengikuti</string>
-    <string name="search_username">Cari nama pengguna …</string>
+    <string name="search_username">\t\tCari nama pengguna …</string>
+    <string name="home_placeholder">Gunakan Ikon Pencarian Untuk Menemukan Pengguna</string>
+    <string name="favorite_placeholder">Oops.. Anda Belum Menambahkan Daftar Favorit Pengguna</string>
+    <string name="follow_placeholder">Tidak Mengikuti Siapapun</string>
     <string name="github_user">PENGGUNA GITHUB</string>
     <string name="profile">Profil Pengguna</string>
     <string name="company">Belum Bekerja</string>
@@ -16,12 +19,10 @@
     <string name="on">HIDUP</string>
     <string name="off">MATI</string>
     <string name="setting">Pengaturan</string>
-    <string name="content_text">Alarm Notifikasi</string>
-    <string name="sub_text">Submission Android Fundamental 3 Dicoding</string>
+    <string name="content_title">Alarm Notifikasi</string>
+    <string name="content_text">Submission Android Fundamental 3 Dicoding</string>
+    <string name="sub_text">Notifikasi Pengingat Jam 9 Pagi</string>
     <string name="alarm_on">Alarm Manager Dinyalakan</string>
     <string name="alarm_off">Alarm Manager Dibatalkan</string>
     <string name="connection_failed">Koneksi gagal. \n Silahkan cek dan coba lagi.</string>
-    <string name="home_placeholder">Gunakan Ikon Pencarian Untuk Menemukan Pengguna</string>
-    <string name="favorite_placeholder">Oops.. Anda Belum Menambahkan Daftar Favorit Pengguna</string>
-    <string name="follow_placeholder">Tidak Mengikuti Siapapun</string>
 </resources>

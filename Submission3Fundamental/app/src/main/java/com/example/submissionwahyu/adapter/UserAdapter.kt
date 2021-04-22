@@ -21,8 +21,11 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
     }
 
     fun setList(users: ArrayList<User>){
-        list.clear()
+        if (users.size > 0){
+            list.clear()
+        }
         list.addAll(users)
+
         notifyDataSetChanged()
     }
 

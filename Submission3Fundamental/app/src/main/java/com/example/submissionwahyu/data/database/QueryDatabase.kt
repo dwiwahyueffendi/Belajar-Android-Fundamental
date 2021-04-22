@@ -14,7 +14,7 @@ interface QueryDatabase {
     @Query("DELETE FROM favorite_database WHERE favorite_database.id = :id")
     suspend fun deleteFavoriteUser(id: Int): Int
 
-    @Query("SELECT * FROM favorite_database")
+    @Query("SELECT * FROM favorite_database ORDER BY username ASC")
     fun getFavoriteUser(): LiveData<List<FavoriteDatabase>>
 
     @Query("SELECT count(*) FROM favorite_database WHERE favorite_database.id = :id")

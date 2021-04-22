@@ -19,7 +19,7 @@ class ListFavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListFavoriteBinding
     private lateinit var adapter: UserAdapter
-    private lateinit var viewModel: FavoriteViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class ListFavoriteActivity : AppCompatActivity() {
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
-        viewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
+        favoriteViewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
 
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {
@@ -62,7 +62,17 @@ class ListFavoriteActivity : AppCompatActivity() {
             rvUser.adapter = adapter
         }
 
-        viewModel.getFavoriteUser()?.observe(this){ userFavorite ->
+        /*favoriteViewModel.getFavoriteUser()?.observe(this){ userFavorite ->
+            if (userFavorite != null && userFavorite.isNotEmpty()){
+                val listFavoriteUser = mapListUser(userFavorite)
+                adapter.setList(listFavoriteUser)
+                loadingState(true)
+            } else{
+                loadingState(false)
+            }
+        }*/
+
+        favoriteViewModel.viewFavorite?.observe(this){ userFavorite ->
             if (userFavorite != null && userFavorite.isNotEmpty()){
                 val listFavoriteUser = mapListUser(userFavorite)
                 adapter.setList(listFavoriteUser)

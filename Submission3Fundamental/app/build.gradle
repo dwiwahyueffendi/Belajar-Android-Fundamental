@@ -20,14 +20,14 @@ android {
 
         buildConfigField("String", "API_KEY", API_KEY)
 
-        javaCompileOptions {
+        /*javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [
                         "room.schemaLocation":"$projectDir/schemas".toString(),
                         "room.incremental":"true",
                         "room.expandProjection":"true"]
             }
-        }
+        }*/
     }
 
     buildTypes {
@@ -79,6 +79,7 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.moshi:moshi:1.11.0"
 
     //Room
     implementation "androidx.room:room-runtime:$roomVersion"

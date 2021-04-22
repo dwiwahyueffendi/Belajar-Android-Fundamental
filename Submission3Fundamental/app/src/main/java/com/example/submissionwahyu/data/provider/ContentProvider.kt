@@ -2,6 +2,7 @@ package com.example.submissionwahyu.data.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
@@ -33,7 +34,9 @@ class ContentProvider : ContentProvider() {
     private lateinit var userQuery: QueryDatabase
     //private lateinit var cursor: Cursor
 
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int = -1
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
+        return 0
+    }
 
     override fun getType(uri: Uri): String? = null
 
@@ -50,14 +53,29 @@ class ContentProvider : ContentProvider() {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
-        return when(sUriMatcher.match(uri)){
+        /*return when(sUriMatcher.match(uri)){
             ID_FAVORITE_USER -> userQuery.getConsumerUser()
             else -> null
+        }*/
+        var cursor: Cursor?
+        when(sUriMatcher.match(uri)){
+            ID_FAVORITE_USER -> {
+                cursor = userQuery.getConsumerUser()
+
+                if (context != null){
+                    cursor.setNotificationUri(context?.contentResolver, uri)
+                }
+            }else ->{
+            cursor = null
         }
+        }
+        return cursor
     }
 
     override fun update(
         uri: Uri, values: ContentValues?, selection: String?,
         selectionArgs: Array<String>?
-    ): Int = -1
+    ): Int {
+        return 0
+    }
 }

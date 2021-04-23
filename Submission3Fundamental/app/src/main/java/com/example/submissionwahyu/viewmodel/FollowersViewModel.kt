@@ -7,12 +7,17 @@ import androidx.lifecycle.ViewModel
 import com.example.submissionwahyu.R
 import com.example.submissionwahyu.api.RetrofitConfig
 import com.example.submissionwahyu.data.endpoint.User
+import com.example.submissionwahyu.view.FollowersFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class FollowersViewModel: ViewModel() {
     val listUserFollowers = MutableLiveData<ArrayList<User>>()
+
+    companion object{
+        private val TAG = FollowersFragment::class.java.simpleName
+    }
 
     fun setListFollowers(username: String){
         RetrofitConfig.getUser()
